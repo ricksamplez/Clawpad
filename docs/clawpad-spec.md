@@ -24,7 +24,7 @@ It must not replace existing OpenClaw systems.
 
 ### 2.1 Target Runtime
 
-This specification targets **OpenClaw `>= 2026.4.9`**.
+This specification targets **OpenClaw `>= 2026.4.10`**.
 
 Clawpad is implemented as a **native OpenClaw plugin**:
 
@@ -485,7 +485,7 @@ Example:
 ---
 schema_version: 1
 plugin_id: clawpad
-openclaw_min_version: 2026.4.9
+openclaw_min_version: 2026.4.10
 agent_id: main
 session_key_hash: abc123
 session_id: sess_01ABCDEF
@@ -1006,6 +1006,20 @@ Clawpad should remain fully usable with only:
 * prompt overlay hook
 * session boundary handling
 
+### 20.9 Active Memory
+
+Clawpad must coexist with the optional Active Memory plugin.
+
+It must not:
+
+- register a memory capability
+- override the active memory slot
+- depend on active memory being present
+- assume recall/promotion/dreaming ownership
+
+Clawpad remains a separate working-state layer.
+If Active Memory is enabled, Clawpad overlay injection and tools must still behave independently and predictably.
+
 ---
 
 ## 21. Agent Policy
@@ -1118,7 +1132,7 @@ clawpad/
 13. implement `before_prompt_build` overlay injection
 14. implement `/new` and `/reset` hooks
 15. write tests
-16. run DM smoke tests on OpenClaw `2026.4.9+`
+16. run DM smoke tests on OpenClaw `2026.4.10+`
 
 ---
 
@@ -1126,7 +1140,7 @@ clawpad/
 
 Clawpad is complete when all of the following are true:
 
-* native plugin loads on OpenClaw `2026.4.9+`
+* native plugin loads on OpenClaw `2026.4.10+`
 * plugin exposes four tools
 * plugin injects overlay through `before_prompt_build`
 * overlay stays bounded and compact
